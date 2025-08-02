@@ -1,7 +1,7 @@
 import telebot
 import re
-
-TOKEN = "8210418363:AAHnzs0HuGH-pwrC_JWup1Vcda50kuOXD60"
+import os
+TOKEN = os.getenv("8210418363:AAHnzs0HuGH-pwrC_JWup1Vcda50kuOXD60")
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -11,7 +11,7 @@ def send_welcome(message):
 
 @bot.message_handler(content_types=['document'])
 def handle_docs(message):
-    file_info = bot.get_file(message.document.file_id)
+    file_info = bot.get_file(message.document.file_)
     downloaded_file = bot.download_file(file_info.file_path)
 
     input_path = "input.sh"
